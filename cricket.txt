@@ -23,10 +23,3 @@ The silence lasted for exactly three seconds. Then, the "Main Street Oval" erupt
 Arjun looked at his wooden plank. It wasn't just a piece of scrap anymore. In that moment, under the purple sky of a small town, he wasn't just a kid in the dirt. He was a hero.
 
 
-
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/ram-7162/LANGCHAIN.git
-git push -u origin main
