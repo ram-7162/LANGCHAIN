@@ -1,0 +1,132 @@
+Instructions
+This entrance challenge is divided into two distinct parts, each designed to assess different aspects
+of your quantitative and programming abilities.
+Part 1: Financial Intuition and Fundamentals
+This section contains a set of problems aimed at evaluating your basic financial intuition and
+understanding of fundamental mathematical concepts. You will not know most of the answers
+and terms immediately, but this should encourage you to search and learn about the terms in the
+questions. Submit a solution PDF containing your solutions. Your write-up should
+clearly demonstrate your reasoning and understanding behind each answer.
+Part 2: Mathematical Modelling and Programming
+This section tests your ability to bridge the gap between abstract mathematical theory and concrete,
+functional code. It consists of 4 programming problems, each structured to give you a foundational
+idea of what financial mathematics looks like.
+• You are required to attempt any 2 out of the given 4 problems.
+• The focus is on your ability to understand underlying mathematics and translate it into good,
+readable code.
+• For this part, you must submit a link to your GitHub repository or Jupyter notebook or
+Google Colab containing your code, as well as a short report describing your approach,
+methodology, and any insights gained. Alternately you may also add your report using
+markdown text in the Jupyter Notebook.
+1
+Evaluation Criteria
+Your submissions will be evaluated on the following criteria:
+1. Mathematical Correctness: The primary criterion is the correct implementation of the
+specified mathematical models and formulas.
+2. Code Quality: Your code should be clear, well-commented, and logically structured. Efficiency is a consideration, but clarity and correctness are paramount.
+3. Demonstrated Understanding: Through your code, visualizations, and any accompanying
+explanations, you should demonstrate a clear grasp of the underlying principles of each model.
+Additional Notes
+• No prior knowledge of financial instruments is required to solve these problems.
+• Each section provides the necessary theoretical background and a curated list of resources to
+help you learn the required concepts from first principles.
+• The last date for the submission of PS’s is 4th January 2026 EOD.
+• This challenge is as much a learning exercise as it is an assessment. Good luck!
+Part 1: Financial Intuition and Fundamentals
+1. Option Profit/Loss and Break-even:
+A put option on a share has an exercise (strike) price of |600 and a premium of |25.
+(a) Calculate the profit or loss of the put option buyer if the market price at expiry
+is: |550, |600, and |650.
+(b) Determine the break-even price for the put option buyer.
+(c) Now assume instead that the option was a call option with the same strike price (|600)
+and premium (|20). Calculate the break-even price for the call option buyer.
+2. Currency Arbitrage:
+Suppose you can exchange currency A for B at rate 2:1, and B for C at 3:1, and C for A
+at 1:8. Is there an arbitrage opportunity? If so, describe a sequence of trades that yields a
+profit.
+3. Loan Amortization with Equal Monthly Installments:
+You take a loan of |50,000 at 12% annual interest, to be repaid in 12 equal monthly installments.
+2
+(a) In the first payment, what portion goes to interest and what portion goes to principal?
+(b) In the last payment, what portion goes to interest and what portion goes to principal?
+4. Prize Choice Scenario:
+You have won a prize! You have two choices:
+• Option A: Receive $1 million today.
+• Option B: Receive $50,000 at the end of every year, forever (a perpetuity).
+Assuming a constant annual interest rate of 4%, which option should you choose and why?
+What is the “break-even” interest rate at which you would be indifferent between the two
+options?
+5. Hedging with Inverse Correlation:
+You own 1,000 shares of TechCorp at |200 each (total |2 lakhs). You fear a sector crash.
+You notice SafeBank stock moves inversely to TechCorp (when TechCorp falls 10%, SafeBank
+rises 5%).
+(a) How could you hedge by buying SafeBank shares? Roughly how many shares?
+(b) If TechCorp drops 10% (to |180) and SafeBank rises 5%, what is your net position?
+(c) What is the main limitation of this hedge compared to using futures or options?
+6. Simple Market Making Scenario:
+Market maker MM quotes XYZ stock at Bid |50.00 / Ask |50.10 (spread |0.10).
+Scenario (over 1 hour):
+• 10:00 : Trader A sells 2,000 shares at bid |50.00 → MM buys 2,000 @ |50.00 (pays
+|1,00,000)
+• 10:15 : Trader B buys 1,500 shares at ask |50.10 → MM sells 1,500 @ |50.10 (receives
+|75,150) → MM inventory now: +500 shares
+• 10:30 : Trader C sells 800 shares at bid |50.00 → MM buys 800 @ |50.00 (pays |40,000)
+→ MM inventory now: +1,300 shares
+• 10:45 : Trader D buys 1,000 shares at ask |50.10 → MM sells 1,000 @ |50.10 (receives
+|50,100) → MM inventory now: +300 shares
+Calculate:
+(a) Total cash flow for MM (money received - money paid)?
+(b) Spread profit captured (ignoring inventory)?
+(c) Unrealized P&L if XYZ now trades at |49.80?
+(d) Was this a profitable hour for MM? Why?
+3
+Part 2: Mathematical Modelling and Programming Challenges
+Simulating Stock Price Paths
+Problem Statement: Build a simple price simulator using Geometric Brownian Motion that
+generates multiple possible future stock price paths. Your simulator should:
+1. Generate N = 1000 different price paths for a stock over T = 1 year using daily steps
+2. Start from S0 = $100 with drift µ = 0.08 and volatility σ = 0.20
+3. Plot all 1000 price paths on one graph to see the ”fan” of possible futures
+4. Create histogram of final stock prices after 1 year
+5. Calculate average final price and standard deviation from simulations
+6. Use these price paths to estimate payoff of a simple European call option (strike = $105)
+Simple Simulation Rule: Each day, the stock price changes by a small random amount based
+on:
+• Drift (µ): Average upward trend (8% per year)
+• Volatility (σ): Random wiggles (20% per year)
+• Random shocks: Normal random numbers Z ∼ N(0, 1)
+Implementation Steps:
+• Use NumPy’s np.random.normal() for daily random shocks
+• Daily time step: ∆t = 1/252 (trading days in a year)
+• Simulate(GBM): St+1 = St × exp[(µ − 0.5σ
+2
+)∆t + σ
+√
+∆tZ] (where Z is a normal random
+variable)
+• For European call: Payoff = max(ST − 105, 0) at maturity
+• Average all 1000 option payoffs to get expected value
+Formulas for Theoretical Mean and Standard Deviation(GBM after time T):
+E[ST ] = S0e
+µT (1)
+σ[ST ] = S0e
+µTp
+e
+σ2T − 1 (2)
+Expected Output:
+4
+• Plot with 1000 price paths (shows range of possible futures)
+• Histogram of final prices
+• Final summary table comparing:
+Metric | Theoretical | Simulated
+--------------------|-------------|----------
+Mean final price | $XXX | $XXX
+Std final price | $XXX | $XXX
+Call option simulated price - $XXX
+Prerequisites & Learning Resources:
+• Probability Theory: Basic understanding of normal distributions, random variables
+• Python Libraries: NumPy, Matplotlib, Pandas
+• Resources:
+– Beginner GBM Tutorial: https://towardsdatascience.com/monte-carlo-simulation-of-stoc– Simple Python GBM: https://www.quantstart.com/articles/geometric-brownian-motion-pyt– GBM Tutorial: https://blog.quantinsti.com/monte-carlo-simulation/
+– Mathematical Theory: https://www.columbia.edu4700-07-Notes-GBM
+– Theory (IITG NPTEL Lecture): https://www.youtube.com/watch?v=OlHIpnhSGRY
