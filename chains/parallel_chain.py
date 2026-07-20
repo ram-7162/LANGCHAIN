@@ -36,10 +36,10 @@ prompt3 = PromptTemplate(
 )
 
 parallel_chain = RunnableParallel({
-    "chain1" : prompt1 | chat_model | parser,
-    "chain2" : prompt2 | chat_model | parser,
-}
-)
+    "notes": prompt1 | chat_model | parser,
+    "quiz": prompt2 | chat_model | parser,
+})
+####Both branches receive the same input.
 
 merge_chain = prompt3 | chat_model | parser
 

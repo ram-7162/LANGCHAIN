@@ -31,6 +31,8 @@ parallel_chain = RunnableParallel({
 }
 )
 
+#### Both branches receive the same input.
+
 result = parallel_chain.invoke({'topic' : 'India'})
 ########## result is dictionary with two topic as key
 print(result)
