@@ -13,7 +13,7 @@ documents = {
     "India is GOAT",
     "Myself rohit jhajhra",
     "I live in India ",
-    "I studied from saint lawrence public school",
+    "I studied from Saint lawrence public school",
     "lapalace correction factor"
 }
 result = embeddings.embed_documents(documents)

@@ -4,6 +4,7 @@ from typing import Annotated, Optional, Literal
 from pydantic import BaseModel, Field
 load_dotenv()
 
+
 llm = HuggingFacePipeline.from_model_id(
     model_id="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
     task="text-generation",
@@ -12,6 +13,8 @@ llm = HuggingFacePipeline.from_model_id(
         "max_new_tokens": 200
     }
 )
+
+
 
 chat_model = ChatHuggingFace(llm=llm)
 #schema

@@ -11,6 +11,7 @@ template = PromptTemplate(
     input_variables = ['name']
 )
 
+
 prompt1 = template.format(**{'name' : 'nitish'})
 prompt2 = template.invoke({'name':'nitish'})
 print(prompt1)
